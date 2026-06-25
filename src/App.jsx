@@ -311,7 +311,7 @@ function Feed({ profile }) {
   };
 
   const loadData = useCallback(async () => {
-    const [{ data: sData }, { data: pData }, { data: vData }] = await Promise.all([
+    const [{ data: sData }, { data: pData }, { data: vData = [] }] = await Promise.all([
       supabase.from("streamers").select("*, profiles(username, avatar_initials)").order("follower_count", { ascending: false }),
       supabase.from("polls").select("*, streamers(profiles(username))").order("created_at", { ascending: false }),
       supabase.from("votes").select("*").eq("user_id", profile.id),

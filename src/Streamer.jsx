@@ -16,7 +16,7 @@ useEffect(() => {
     const { data, error } = await supabase
       .from("streamer_stats")
       .select("*")
-      .eq("id", user.id)
+      .eq("profile_id", user.id)
       .single();
 
     // If there's an error or no data, it triggers your "Access Denied" logic
